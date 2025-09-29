@@ -19,7 +19,7 @@
                            'view_scale_primary', ## NEW
                            'view_scale_secondary', ## NEW
                            'combine_elements','aes_to_scale',
-                           'is.Coord','is.facet','is.layer','make_labels','update_labels','update_guides',
+                           'is.Coord','is.facet','is.layer','make_labels','update_labels', ##'update_guides',
                            # 'update_theme', ## REMOVED
                            'aes_to_scale',
                         # 'scales_add_missing',
