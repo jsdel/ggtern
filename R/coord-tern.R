@@ -862,26 +862,44 @@ view_scales_from_scale <- function(scale, coord_limits = NULL, expand = TRUE, ex
     d$AL  = .valid.angle(d$A + .theme.get.rotation(self))
     
     ##Function to create new arrow grob
-    .render.arrow <- function(name,ix,items){
-      tryCatch({  
-        e = calc_element(name,theme=theme,verbose=F)
-        if(inherits(e, "element_blank"))
-          return(items)
-        
-        g = segmentsGrob(x0 = d$x[ix], x1 = d$xend[ix], y0 = d$y[ix], y1 = d$yend[ix],
-                            default.units ="npc",
-                            arrow         = e$lineend,
-                            gp            = gpar(col     = e$colour %||% 'transparent', 
-                                                 lty     = e$linetype,
-                                                 lineend = 'butt',
-                                                 lwd     = e$linewidth)
-        )
-        items[[length(items) + 1]] <- g
-      },error = function(e){
-        warning(e)
-      })
-      items
+.render.arrow <- function(name, ix, items){
+  tryCatch({
+    e <- calc_element(name, theme = theme, verbose = FALSE)
+    if(inherits(e, "element_blank"))
+      return(items)
+
+    # Fetch arrow spec separately
+    arrow_spec <- calc_element("tern.axis.arrow.spec", theme = theme, verbose = FALSE)
+    if(inherits(arrow_spec, "element_blank")) arrow_spec <- NULL
+    # Backward compatibility: if user still stuffed a grid::arrow() into lineend
+    if(inherits(e$lineend, "arrow") && is.null(arrow_spec)){
+      arrow_spec <- e$lineend
+      e$lineend  <- "butt"
     }
+    if(is.null(arrow_spec) || !inherits(arrow_spec, "arrow")){
+      # allow turning arrows off just by setting arrow.spec = NULL
+      arrow_spec <- NULL
+    }
+
+    # existing coordinate calculations above unchanged...
+
+    g <- segmentsGrob(
+      x0 = d$x[ix], x1 = d$xend[ix], y0 = d$y[ix], y1 = d$yend[ix],
+      default.units = "npc",
+      arrow = if(calc_element("tern.axis.arrow.show", theme, verbose = FALSE)) arrow_spec else NULL,
+      gp = gpar(
+        col     = e$colour %||% 'transparent',
+        lty     = e$linetype,
+        lineend = e$lineend %||% "butt",
+        lwd     = e$linewidth
+      )
+    )
+    items[[length(items) + 1]] <- g
+  }, error = function(e){
+    warning(e)
+  })
+  items
+}
     
     #Function to greate new label grob
     .render.label <- function(name,ix,items){
