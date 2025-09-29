@@ -231,19 +231,20 @@ theme_ggtern <- function(base_size = 11, base_family = ""){
     tern.axis.text.show            = getOption("tern.text.show"),
     
     #Arrow
-    tern.axis.arrow                = element_line(lineend = getOption('tern.arrow')),
-    tern.axis.arrow.T              = element_line(),
-    tern.axis.arrow.L              = element_line(),
-    tern.axis.arrow.R              = element_line(),
-    tern.axis.arrow.text           = element_text(),
-    tern.axis.arrow.text.T         = element_text(),
-    tern.axis.arrow.text.L         = element_text(),
-    tern.axis.arrow.text.R         = element_text(),
-    tern.axis.arrow.sep            = getOption("tern.arrow.sep"),
-    tern.axis.arrow.show           = getOption("tern.arrow.show"),
-    tern.axis.arrow.start          = getOption("tern.arrow.start"),
-    tern.axis.arrow.finish         = getOption("tern.arrow.finish"),
-    
+    tern.axis.arrow        = element_line(lineend = "butt"),
+    tern.axis.arrow.T      = element_line(lineend = "butt"),
+    tern.axis.arrow.L      = element_line(lineend = "butt"),
+    tern.axis.arrow.R      = element_line(lineend = "butt"),
+    tern.axis.arrow.text   = element_text(),
+    tern.axis.arrow.text.T = element_text(),
+    tern.axis.arrow.text.L = element_text(),
+    tern.axis.arrow.text.R = element_text(),
+    tern.axis.arrow.sep    = getOption("tern.arrow.sep"),
+    tern.axis.arrow.show   = getOption("tern.arrow.show"),
+    tern.axis.arrow.start  = getOption("tern.arrow.start"),
+    tern.axis.arrow.finish = getOption("tern.arrow.finish"),
+    tern.axis.arrow.spec   = getOption("tern.arrow"),  # NEW
+        
     #Ticks
     tern.axis.ticks                = element_line(),
     tern.axis.ticks.major          = element_line(),
