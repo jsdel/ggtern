@@ -73,7 +73,7 @@ ggtern_register_theme_elements = function(){
     tern.axis.title.show           = getOption("tern.title.show"),
     
     #Arrow
-    tern.axis.arrow                = element_line(),
+    tern.axis.arrow                = element_line(),        # was element_line(lineend = getOption('tern.arrow'))
     tern.axis.arrow.T              = element_line(),
     tern.axis.arrow.L              = element_line(),
     tern.axis.arrow.R              = element_line(),
@@ -85,7 +85,8 @@ ggtern_register_theme_elements = function(){
     tern.axis.arrow.sep            = getOption("tern.arrow.sep"),
     tern.axis.arrow.start          = getOption("tern.arrow.start"),
     tern.axis.arrow.finish         = getOption("tern.arrow.finish"),
-    
+    tern.axis.arrow.spec           = getOption("tern.arrow"),  # NEW: holds grid::arrow() object
+      
     #Ticks
     tern.axis.ticks                = element_line(),
     tern.axis.ticks.major          = element_line(),
