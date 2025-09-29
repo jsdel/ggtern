@@ -32,6 +32,7 @@
 #' @param tern.axis.arrow.text.R Arrow Label on RHS Axis (`element_text`; inherits from `tern.axis.arrow.text`)
 #' @param tern.axis.arrow.start Proportion of Axis when Arrow Starts (`numeric`)
 #' @param tern.axis.arrow.finish Proportion of Axis when Arrow Finishes (`numeric`)
+#' @param tern.axis.arrow.spec Arrow head specification (`grid::arrow()` object) applied to ternary axis arrows (non-element).
 #' @param tern.axis.arrow.sep Arrows Seperation from Axis (`numeric`)
 #' @param tern.axis.arrow.show Arrows Show or Hide (`logical`)
 #' @param tern.axis.clockwise Clockwise or Anticlockwise Precession (`logical`)
